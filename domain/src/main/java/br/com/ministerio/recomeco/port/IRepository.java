@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 import java.util.List;
 
-@Repository
 public interface IRepository<T> {
     List<T> listar();
     T obterPorId(BigInteger id);

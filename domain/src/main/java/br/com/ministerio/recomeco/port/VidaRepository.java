@@ -1,11 +1,9 @@
 package br.com.ministerio.recomeco.port;
 
-import br.com.ministerio.recomeco.domain.Vida;
-import org.springframework.stereotype.Repository;
+import br.com.ministerio.recomeco.domain.dto.Vida;
 
 import java.util.List;
 
-@Repository
 public interface VidaRepository extends IRepository<Vida>{
 
     Vida obterPorCpf(String cpf);
