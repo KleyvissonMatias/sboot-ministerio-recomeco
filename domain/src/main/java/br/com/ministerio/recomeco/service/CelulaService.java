@@ -4,7 +4,8 @@ import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.Celula;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.port.CelulaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
@@ -13,10 +14,11 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CelulaService implements IService<Celula> {
 
-    @Autowired
     private CelulaRepository repository;
+    private Logger log;
 
     @Override
     public List<Celula> listar() {
@@ -27,9 +29,8 @@ public class CelulaService implements IService<Celula> {
             }
             return celulas;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -42,9 +43,8 @@ public class CelulaService implements IService<Celula> {
             }
             return celula;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -53,9 +53,8 @@ public class CelulaService implements IService<Celula> {
         try {
             repository.criar(celula);
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -68,9 +67,8 @@ public class CelulaService implements IService<Celula> {
             }
             return celulaAtualizada;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -79,9 +77,8 @@ public class CelulaService implements IService<Celula> {
         try {
             repository.deletar(celula);
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -93,9 +90,8 @@ public class CelulaService implements IService<Celula> {
             }
             return celulas;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 }

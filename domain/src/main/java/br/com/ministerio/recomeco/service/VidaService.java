@@ -4,7 +4,8 @@ import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.Vida;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.port.VidaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
@@ -13,10 +14,12 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class VidaService implements IService<Vida> {
 
-    @Autowired
     private VidaRepository repository;
+
+    private Logger log;
 
     @Override
     public List<Vida> listar() {
@@ -27,9 +30,8 @@ public class VidaService implements IService<Vida> {
             }
             return vidas;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -42,9 +44,8 @@ public class VidaService implements IService<Vida> {
             }
             return vida;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -53,9 +54,8 @@ public class VidaService implements IService<Vida> {
         try {
             repository.criar(vida);
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -69,8 +69,6 @@ public class VidaService implements IService<Vida> {
             return vidaAtualizada;
         } catch (HttpServerErrorException e) {
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -79,9 +77,8 @@ public class VidaService implements IService<Vida> {
         try {
             repository.deletar(vida);
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -93,9 +90,8 @@ public class VidaService implements IService<Vida> {
             }
             return vidas;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -107,9 +103,8 @@ public class VidaService implements IService<Vida> {
             }
             return vida;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 
@@ -121,9 +116,8 @@ public class VidaService implements IService<Vida> {
             }
             return statusVida;
         } catch (HttpServerErrorException e) {
+            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
-        } catch (Exception e) {
-            throw new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, ErroConstants.ERRO_INTERNO, e);
         }
     }
 }
