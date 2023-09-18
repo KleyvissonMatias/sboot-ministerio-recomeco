@@ -1,7 +1,5 @@
 package br.com.ministerio.recomeco.port;
 
-import org.springframework.stereotype.Repository;
-
 import java.math.BigInteger;
 import java.util.List;
 
