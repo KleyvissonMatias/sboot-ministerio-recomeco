@@ -1,4 +1,4 @@
-package br.com.ministerio.recomeco.infrastructure;
+package br.com.ministerio.recomeco.infrastructure.database;
 
 import br.com.ministerio.recomeco.port.CelulaRepository;
 import org.jdbi.v3.sqlobject.locator.UseClasspathSqlLocator;
