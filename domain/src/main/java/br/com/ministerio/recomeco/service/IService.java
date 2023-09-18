@@ -6,7 +6,7 @@ import java.util.List;
 public interface IService <T> {
     List<T> listar();
     T obterPorId(BigInteger id);
-    void criar(T t);
+    void inserir(T t);
     T atualizar(T t);
     void deletar(T t);
 }

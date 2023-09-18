@@ -26,7 +26,7 @@ public class CelulaService implements IService<Celula> {
             }
             return celulas;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
         }
     }
@@ -40,17 +40,17 @@ public class CelulaService implements IService<Celula> {
             }
             return celula;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
         }
     }
 
     @Override
-    public void criar(Celula celula) {
+    public void inserir(Celula celula) {
         try {
             repository.criar(celula);
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
         }
     }
@@ -64,7 +64,7 @@ public class CelulaService implements IService<Celula> {
             }
             return celulaAtualizada;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
         }
     }
@@ -74,7 +74,7 @@ public class CelulaService implements IService<Celula> {
         try {
             repository.deletar(celula);
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
         }
     }
@@ -87,7 +87,7 @@ public class CelulaService implements IService<Celula> {
             }
             return celulas;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
         }
     }
@@ -100,7 +100,7 @@ public class CelulaService implements IService<Celula> {
             }
             return celulas;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
         }
     }

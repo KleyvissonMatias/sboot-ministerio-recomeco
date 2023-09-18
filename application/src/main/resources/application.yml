@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: sboot-ministerio-recomeco
+    description: API Ministério Recomeco - sboot-ministerio-recomeco
+server:
+  address: 0.0.0.0
+  port:
+    8080
+---
+spring:
+  on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/ministeriodb?useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: R00Tr00t2020

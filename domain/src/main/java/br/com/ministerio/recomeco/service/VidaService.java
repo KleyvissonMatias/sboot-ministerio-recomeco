@@ -27,7 +27,7 @@ public class VidaService implements IService<Vida> {
             }
             return vidas;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
         }
     }
@@ -41,17 +41,17 @@ public class VidaService implements IService<Vida> {
             }
             return vida;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
         }
     }
 
     @Override
-    public void criar(Vida vida) {
+    public void inserir(Vida vida) {
         try {
             repository.criar(vida);
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
         }
     }
@@ -74,7 +74,7 @@ public class VidaService implements IService<Vida> {
         try {
             repository.deletar(vida);
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
         }
     }
@@ -87,7 +87,7 @@ public class VidaService implements IService<Vida> {
             }
             return vidas;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
         }
     }
@@ -100,7 +100,7 @@ public class VidaService implements IService<Vida> {
             }
             return vida;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
         }
     }
@@ -113,7 +113,7 @@ public class VidaService implements IService<Vida> {
             }
             return statusVida;
         } catch (MinisterioRecomecoException e) {
-            log.info(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
         }
     }
