@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @UseClasspathSqlLocator
 public interface JdbiVidaRepositoryImpl extends VidaRepository {
+
 }
