@@ -4,17 +4,17 @@ import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.dto.Vida;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.port.VidaRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import java.math.BigInteger;
 import java.util.List;
 
-@RequiredArgsConstructor
 @Slf4j
-public class VidaService implements IService<Vida> {
+public class VidaService extends Service<Vida> {
 
+    @Autowired
     private VidaRepository repository;
 
     @Override
@@ -78,6 +78,7 @@ public class VidaService implements IService<Vida> {
         }
     }
 
+    @Override
     public List<Vida> listarPorNome(String nome) {
         try {
             List<Vida> vidas = repository.listarPorNome(nome);

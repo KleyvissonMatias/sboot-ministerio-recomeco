@@ -4,8 +4,7 @@ import br.com.ministerio.recomeco.domain.dto.Celula;
 
 import java.util.List;
 
-public interface CelulaRepository extends IRepository<Celula>{
-
+public interface CelulaRepository extends IRepository<Celula> {
     List<Celula> listarPorNome(String nome);
 
     List<Celula> listarPorLider(String nome);

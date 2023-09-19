@@ -4,7 +4,6 @@ import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.dto.Celula;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.port.CelulaRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Slf4j
-public class CelulaService implements IService<Celula> {
+public class CelulaService extends Service<Celula> {
 
     @Autowired
     private CelulaRepository repository;
@@ -80,6 +79,7 @@ public class CelulaService implements IService<Celula> {
         }
     }
 
+    @Override
     public List<Celula> listarPorNome(String nome) {
         try {
             List<Celula> celulas = repository.listarPorNome(nome);

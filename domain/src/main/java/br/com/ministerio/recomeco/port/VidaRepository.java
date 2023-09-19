@@ -4,11 +4,10 @@ import br.com.ministerio.recomeco.domain.dto.Vida;
 
 import java.util.List;
 
-public interface VidaRepository extends IRepository<Vida>{
-
+public interface VidaRepository extends IRepository<Vida> {
     Vida obterPorCpf(String cpf);
 
     List<Vida> listarPorNome(String nome);
 
-    Vida atualizarStatus(String cpf,String status);
+    Vida atualizarStatus(String cpf, String status);
 }
