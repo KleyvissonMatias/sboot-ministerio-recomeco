@@ -5,8 +5,6 @@ import br.com.ministerio.recomeco.domain.dto.Vida;
 import br.com.ministerio.recomeco.domain.response.Response;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.service.VidaService;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,7 +50,7 @@ public class VidaController {
     }
 
     @PutMapping(path = "/atualizar-status")
-    public ResponseEntity<Vida> atualizarStatusVida(@RequestBody @Validated String cpf, String status) {
+    public ResponseEntity<Vida> atualizarStatusVida(@RequestParam @Validated String cpf, String status) {
         try {
             Vida statusVida = service.atualizarStatus(cpf, status);
             return new ResponseEntity<Vida>(statusVida, HttpStatus.OK);

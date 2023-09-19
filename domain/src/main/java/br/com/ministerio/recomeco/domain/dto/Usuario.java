@@ -3,7 +3,6 @@ package br.com.ministerio.recomeco.domain.dto;
 import lombok.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 
 @Data
 @NoArgsConstructor
