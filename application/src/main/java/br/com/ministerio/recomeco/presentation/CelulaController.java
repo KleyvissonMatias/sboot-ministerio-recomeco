@@ -1,8 +1,7 @@
 package br.com.ministerio.recomeco.presentation;
 
-import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.dto.Celula;
-import br.com.ministerio.recomeco.domain.response.Response;
+import br.com.ministerio.recomeco.domain.response.ErroResponse;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.service.CelulaService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,93 +23,107 @@ public class CelulaController {
     private CelulaService service;
 
     @PostMapping(path = "/inserir")
-    public ResponseEntity inserirCelula(@RequestBody @Validated Celula celula) {
+    public ResponseEntity<?> inserirCelula(@RequestBody @Validated Celula celula) {
         try {
             service.inserir(celula);
-            return new ResponseEntity(HttpStatus.CREATED);
+            return ResponseEntity.ok().build();
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @PutMapping(path = "/atualizar")
-    public ResponseEntity<Celula> atualizarCelula(@RequestBody @Validated Celula celula) {
+    public ResponseEntity<?> atualizarCelula(@RequestBody @Validated Celula celula) {
         try {
             Celula celulaAtualizada = service.atualizar(celula);
-            return new ResponseEntity<Celula>(celulaAtualizada, HttpStatus.OK);
+            return ResponseEntity.ok(celulaAtualizada);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/obter-por-id")
-    public ResponseEntity<Celula> obterCelulaPorId(@RequestParam @Validated BigInteger id) {
+    public ResponseEntity<?> obterCelulaPorId(@RequestParam @Validated BigInteger id) {
         try {
             Celula celula = service.obterPorId(id);
-            return new ResponseEntity<Celula>(celula, HttpStatus.OK);
+            return ResponseEntity.ok(celula);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/listar")
-    public ResponseEntity<List<Celula>> listarCelulas() {
+    public ResponseEntity<?> listarCelulas() {
         try {
             List<Celula> celulas = service.listar();
-            return new ResponseEntity<List<Celula>>(celulas, HttpStatus.OK);
+            return ResponseEntity.ok(celulas);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/listar-por-nome")
-    public ResponseEntity<List<Celula>> listarCelulasPorNome(@RequestParam @Validated String nome) {
+    public ResponseEntity<?> listarCelulasPorNome(@RequestParam @Validated String nome) {
         try {
             List<Celula> celulas = service.listarPorNome(nome);
-            return new ResponseEntity<List<Celula>>(celulas, HttpStatus.OK);
+            return ResponseEntity.ok(celulas);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/listar-por-lider")
-    public ResponseEntity<List<Celula>> listarCelulasPorLider(@RequestParam @Validated String lider) {
+    public ResponseEntity<?> listarCelulasPorLider(@RequestParam @Validated String lider) {
         try {
             List<Celula> celulas = service.listarPorLider(lider);
-            return new ResponseEntity<List<Celula>>(celulas, HttpStatus.OK);
+            return ResponseEntity.ok(celulas);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity deletarCelula(@PathVariable("id") BigInteger id) {
+    public ResponseEntity<?> deletarCelula(@PathVariable("id") BigInteger id) {
         try {
             service.deletar(id);
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return ResponseEntity.noContent().build();
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 }

@@ -19,7 +19,6 @@ import java.util.List;
 @Configuration
 @Slf4j
 public class JdbiConfiguration {
-
     @Bean
     public Jdbi jdbi(DataSource dataSource, List<JdbiPlugin> jdbiPluginList, List<RowMapper<?>> rowMapperList) {
         TransactionAwareDataSourceProxy dataSourceProxy = new TransactionAwareDataSourceProxy(dataSource);

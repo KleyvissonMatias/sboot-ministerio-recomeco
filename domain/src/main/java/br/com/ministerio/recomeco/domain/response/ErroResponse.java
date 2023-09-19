@@ -9,12 +9,12 @@ import java.io.Serializable;
 @Builder
 @Getter
 @Setter
-public class Response implements Serializable {
+public class ErroResponse implements Serializable {
     private Integer codigo;
     private String retorno;
     private Object erro;
 
-    public Response(Integer codigo, String retorno, Object erro) {
+    public ErroResponse(Integer codigo, String retorno, Object erro) {
         this.codigo = codigo;
         this.retorno = retorno;
         this.erro = erro;

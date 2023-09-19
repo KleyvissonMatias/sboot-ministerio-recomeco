@@ -1,8 +1,7 @@
 package br.com.ministerio.recomeco.presentation;
 
-import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.dto.Vida;
-import br.com.ministerio.recomeco.domain.response.Response;
+import br.com.ministerio.recomeco.domain.response.ErroResponse;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.service.VidaService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,106 +23,122 @@ public class VidaController {
     private VidaService service;
 
     @PostMapping(path = "/inserir")
-    public ResponseEntity inserirVida(@RequestBody @Validated Vida Vida) {
+    public ResponseEntity<?> inserirVida(@RequestBody @Validated Vida vida) {
         try {
-            service.inserir(Vida);
-            return new ResponseEntity(HttpStatus.CREATED);
+            service.inserir(vida);
+            return ResponseEntity.ok().build();
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @PutMapping(path = "/atualizar")
-    public ResponseEntity<Vida> atualizarVida(@RequestBody @Validated Vida Vida) {
+    public ResponseEntity<?> atualizarVida(@RequestBody @Validated Vida vida) {
         try {
-            Vida VidaAtualizada = service.atualizar(Vida);
-            return new ResponseEntity<Vida>(VidaAtualizada, HttpStatus.OK);
+            Vida vidaAtualizada = service.atualizar(vida);
+            return ResponseEntity.ok(vidaAtualizada);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @PutMapping(path = "/atualizar-status")
-    public ResponseEntity<Vida> atualizarStatusVida(@RequestParam @Validated String cpf, String status) {
+    public ResponseEntity<?> atualizarStatusVida(@RequestParam @Validated String cpf, String status) {
         try {
             Vida statusVida = service.atualizarStatus(cpf, status);
-            return new ResponseEntity<Vida>(statusVida, HttpStatus.OK);
+            return ResponseEntity.ok(statusVida);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/obter-por-id")
-    public ResponseEntity<Vida> obterVidaPorId(@RequestParam @Validated BigInteger id) {
+    public ResponseEntity<?> obterVidaPorId(@RequestParam @Validated BigInteger id) {
         try {
-            Vida Vida = service.obterPorId(id);
-            return new ResponseEntity<Vida>(Vida, HttpStatus.OK);
+            Vida vida = service.obterPorId(id);
+            return ResponseEntity.ok(vida);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/obter-por-cpf")
-    public ResponseEntity<Vida> obterVidaPorCpf(@RequestParam @Validated String cpf) {
+    public ResponseEntity<?> obterVidaPorCpf(@RequestParam @Validated String cpf) {
         try {
-            Vida Vida = service.obterPorCpf(cpf);
-            return new ResponseEntity<Vida>(Vida, HttpStatus.OK);
+            Vida vida = service.obterPorCpf(cpf);
+            return ResponseEntity.ok(vida);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/listar")
-    public ResponseEntity<List<Vida>> listarVidas() {
+    public ResponseEntity<?> listarVidas() {
         try {
-            List<Vida> Vidas = service.listar();
-            return new ResponseEntity<List<Vida>>(Vidas, HttpStatus.OK);
+            List<Vida> vidas = service.listar();
+            return ResponseEntity.ok(vidas);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/listar-por-nome")
-    public ResponseEntity<List<Vida>> listarVidasPorNome(@RequestParam @Validated String nome) {
+    public ResponseEntity<?> listarVidasPorNome(@RequestParam @Validated String nome) {
         try {
-            List<Vida> Vidas = service.listarPorNome(nome);
-            return new ResponseEntity<List<Vida>>(Vidas, HttpStatus.OK);
+            List<Vida> vidas = service.listarPorNome(nome);
+            return ResponseEntity.ok(vidas);
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity deletarVida(@PathVariable("id") @Validated BigInteger id) {
+    public ResponseEntity<?> deletarVida(@PathVariable("id") @Validated BigInteger id) {
         try {
             service.deletar(id);
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return ResponseEntity.noContent().build();
         } catch (MinisterioRecomecoException e) {
-            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 }
