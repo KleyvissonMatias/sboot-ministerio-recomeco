@@ -1,32 +1,31 @@
 package br.com.ministerio.recomeco.presentation;
 
-import br.com.ministerio.recomeco.constant.Endpoints;
 import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.dto.Celula;
 import br.com.ministerio.recomeco.domain.response.Response;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.service.CelulaService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-@RequestMapping(Endpoints.ENDPOINT_CELULA)
-@RequiredArgsConstructor
+@RequestMapping("v1/api/ministerio-recomeco/celula")
+@Slf4j
 public class CelulaController {
 
+    @Autowired
     private CelulaService service;
-    private Logger logger;
 
+    @PostMapping(path = "/inserir")
     public ResponseEntity inserirCelula(@RequestBody @Validated Celula celula) {
         try {
             service.inserir(celula);
@@ -34,11 +33,12 @@ public class CelulaController {
         } catch (MinisterioRecomecoException e) {
             return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
         } catch (Exception e) {
-            logger.error(e);
+            log.error(e.getMessage(), e);
             return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    @PutMapping(path = "/atualizar")
     public ResponseEntity<Celula> atualizarCelula(@RequestBody @Validated Celula celula) {
         try {
             Celula celulaAtualizada = service.atualizar(celula);
@@ -46,11 +46,12 @@ public class CelulaController {
         } catch (MinisterioRecomecoException e) {
             return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
         } catch (Exception e) {
-            logger.error(e);
+            log.error(e.getMessage(), e);
             return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    @GetMapping(path = "/obter-por-id")
     public ResponseEntity<Celula> obterCelulaPorId(@RequestParam @Validated BigInteger id) {
         try {
             Celula celula = service.obterPorId(id);
@@ -58,11 +59,12 @@ public class CelulaController {
         } catch (MinisterioRecomecoException e) {
             return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
         } catch (Exception e) {
-            logger.error(e);
+            log.error(e.getMessage(), e);
             return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    @GetMapping(path = "/listar")
     public ResponseEntity<List<Celula>> listarCelulas() {
         try {
             List<Celula> celulas = service.listar();
@@ -70,19 +72,46 @@ public class CelulaController {
         } catch (MinisterioRecomecoException e) {
             return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
         } catch (Exception e) {
-            logger.error(e);
+            log.error(e.getMessage(), e);
             return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseEntity deletarCelula(@RequestBody @Validated Celula celula) {
+    @GetMapping(path = "/listar-por-nome")
+    public ResponseEntity<List<Celula>> listarCelulasPorNome(@RequestParam @Validated String nome) {
         try {
-            service.deletar(celula);
+            List<Celula> celulas = service.listarPorNome(nome);
+            return new ResponseEntity<List<Celula>>(celulas, HttpStatus.OK);
+        } catch (MinisterioRecomecoException e) {
+            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(path = "/listar-por-lider")
+    public ResponseEntity<List<Celula>> listarCelulasPorLider(@RequestParam @Validated String lider) {
+        try {
+            List<Celula> celulas = service.listarPorLider(lider);
+            return new ResponseEntity<List<Celula>>(celulas, HttpStatus.OK);
+        } catch (MinisterioRecomecoException e) {
+            return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping(path = {"/{id}"})
+    public ResponseEntity deletarCelula(@PathVariable("id") BigInteger id) {
+        try {
+            service.deletar(id);
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         } catch (MinisterioRecomecoException e) {
             return new ResponseEntity(new Response(e.getStatusCode().value(), e.getMessage(), e), e.getStatusCode());
         } catch (Exception e) {
-            logger.error(e);
+            log.error(e.getMessage(), e);
             return new ResponseEntity(ErroConstants.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

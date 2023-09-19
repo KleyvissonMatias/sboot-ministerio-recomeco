@@ -8,5 +8,5 @@ public interface IRepository<T> {
     T obterPorId(BigInteger id);
     void criar(T t);
     T atualizar(T t);
-    void deletar(T t);
+    void deletar(BigInteger id);
 }

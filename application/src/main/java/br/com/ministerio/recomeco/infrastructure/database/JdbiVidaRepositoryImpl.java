@@ -40,7 +40,7 @@ public interface JdbiVidaRepositoryImpl extends VidaRepository {
     @Override
     @SqlUpdate
     @RegisterBeanMapper(Vida.class)
-    void deletar(@BindBean Vida vida);
+    void deletar(@Bind("id") BigInteger id);
 
     @Override
     @SqlQuery

@@ -35,7 +35,6 @@
             <artifactId>sboot-ministerio-recomeco-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
         <!-- Banco de dados -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

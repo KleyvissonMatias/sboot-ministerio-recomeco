@@ -5,17 +5,18 @@ import br.com.ministerio.recomeco.domain.dto.Celula;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.port.CelulaRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import java.math.BigInteger;
 import java.util.List;
 
-@RequiredArgsConstructor
+@Slf4j
 public class CelulaService implements IService<Celula> {
 
+    @Autowired
     private CelulaRepository repository;
-    private Logger log;
 
     @Override
     public List<Celula> listar() {
@@ -70,9 +71,9 @@ public class CelulaService implements IService<Celula> {
     }
 
     @Override
-    public void deletar(Celula celula) {
+    public void deletar(BigInteger id) {
         try {
-            repository.deletar(celula);
+            repository.deletar(id);
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO, e);
@@ -92,9 +93,9 @@ public class CelulaService implements IService<Celula> {
         }
     }
 
-    public List<Celula> listarPorLider(String nome) {
+    public List<Celula> listarPorLider(String lider) {
         try {
-            List<Celula> celulas = repository.listarPorLider(nome);
+            List<Celula> celulas = repository.listarPorLider(lider);
             if (celulas.isEmpty()) {
                 throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
             }

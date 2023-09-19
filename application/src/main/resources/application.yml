@@ -1,17 +1,33 @@
+# Configurações de aplicação
 spring:
-  config:
-    activate:
-      on-profile: dev
+  on-profiles: local
   application:
     name: sboot-ministerio-recomeco
-    description: API Ministério Recomeco - sboot-ministerio-recomeco
+
+# Configurações do servidor
 server:
-  address: 0.0.0.0
-  port:
-    8080
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operationsSorter: method
+
+# Configurações do Spring Security (se aplicável)
+# security:
+#   basic:
+#     enabled: true
+#   oauth2:
+#     client:
+#       registration:
+#         google:
+#           client-id: SeuClientID
+#           client-secret: SeuClientSecret
+
 ---
+# Configurações do banco de dados (se aplicável)
 spring:
-  on-profile: dev
+  on-profiles: local
   datasource:
     url: jdbc:mysql://localhost:3306/ministeriodb?useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver

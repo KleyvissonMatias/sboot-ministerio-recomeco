@@ -8,5 +8,5 @@ public interface IService <T> {
     T obterPorId(BigInteger id);
     void inserir(T t);
     T atualizar(T t);
-    void deletar(T t);
+    void deletar(BigInteger id);
 }

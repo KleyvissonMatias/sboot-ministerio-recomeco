@@ -5,18 +5,17 @@ import br.com.ministerio.recomeco.domain.dto.Vida;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.port.VidaRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 
 import java.math.BigInteger;
 import java.util.List;
 
 @RequiredArgsConstructor
+@Slf4j
 public class VidaService implements IService<Vida> {
 
     private VidaRepository repository;
-
-    private Logger log;
 
     @Override
     public List<Vida> listar() {
@@ -70,9 +69,9 @@ public class VidaService implements IService<Vida> {
     }
 
     @Override
-    public void deletar(Vida vida) {
+    public void deletar(BigInteger id) {
         try {
-            repository.deletar(vida);
+            repository.deletar(id);
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
