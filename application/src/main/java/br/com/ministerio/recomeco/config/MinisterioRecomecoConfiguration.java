@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MinisterioRecomecoConfiguration {
-
     @Bean
     public VidaService vidaService() {
         return new VidaService();

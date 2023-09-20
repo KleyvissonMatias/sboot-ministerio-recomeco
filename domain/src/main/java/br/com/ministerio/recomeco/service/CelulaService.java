@@ -13,7 +13,6 @@ import java.util.List;
 
 @Slf4j
 public class CelulaService extends Service<Celula> {
-
     @Autowired
     private CelulaRepository repository;
 

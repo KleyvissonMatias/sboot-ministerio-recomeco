@@ -16,7 +16,6 @@ import java.util.List;
 @UseClasspathSqlLocator
 @Repository
 public interface JdbiVidaRepositoryImpl extends VidaRepository {
-
     @Override
     @SqlQuery
     @RegisterBeanMapper(Vida.class)

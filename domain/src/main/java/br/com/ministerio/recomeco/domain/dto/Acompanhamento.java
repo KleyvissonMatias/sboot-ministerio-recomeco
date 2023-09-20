@@ -12,15 +12,16 @@ import java.time.LocalDate;
 @Builder
 @Getter
 @Setter
-public class Celula implements Serializable {
+public class Acompanhamento implements Serializable {
     private BigInteger id;
-    private String nomeCelula;
-    private String nomeLider;
-    private String diaReuniao;
-    private String horario;
-    private String endereco;
-    private String telefoneContato;
-    private String outroTelefone;
+    private String liderCelula;
+    private String liderTreinamento;
+    private LocalDate dataBatismo;
+    private LocalDate dataEncontro;
+    private LocalDate dataRenovo;
+    private LocalDate dataAguias;
+    private LocalDate dataLidereUm;
+    private LocalDate dataLidereDois;
     private LocalDate dataInclusao;
     private LocalDate dataAlteracao;
     private LocalDate dataExclusao;

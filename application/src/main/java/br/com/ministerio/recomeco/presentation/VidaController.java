@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("v1/api/ministerio-recomeco/vida")
 @Slf4j
 public class VidaController {
-
     @Autowired
     private VidaService service;
 

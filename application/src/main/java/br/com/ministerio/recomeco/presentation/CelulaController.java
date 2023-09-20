@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("v1/api/ministerio-recomeco/celula")
 @Slf4j
 public class CelulaController {
-
     @Autowired
     private CelulaService service;
 

@@ -13,7 +13,6 @@ import java.util.List;
 
 @Slf4j
 public class VidaService extends Service<Vida> {
-
     @Autowired
     private VidaRepository repository;
 

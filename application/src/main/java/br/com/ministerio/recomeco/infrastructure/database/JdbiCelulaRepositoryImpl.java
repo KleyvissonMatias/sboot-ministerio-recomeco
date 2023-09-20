@@ -17,7 +17,6 @@ import java.util.List;
 @UseClasspathSqlLocator
 @Repository
 public interface JdbiCelulaRepositoryImpl extends CelulaRepository {
-
     @Override
     @SqlQuery
     @RegisterBeanMapper(Celula.class)
