@@ -31,7 +31,14 @@ public class Vida implements Serializable {
     private String culto;
     private String horarioCulto;
     private String observacao;
-    private Acompanhamento acompanhamento;
+    private String liderCelula;
+    private String liderTreinamento;
+    private LocalDate dataBatismo;
+    private LocalDate dataEncontro;
+    private LocalDate dataRenovo;
+    private LocalDate dataAguias;
+    private LocalDate dataLidereUm;
+    private LocalDate dataLidereDois;
     private LocalDate dataInclusao;
     private LocalDate dataAlteracao;
     private LocalDate dataExclusao;
