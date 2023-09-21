@@ -13,6 +13,17 @@ Antes de começar, certifique-se de que você tenha instalado o seguinte em seu 
 
 ## Configuração do Banco de Dados
 
+Configurado no application.yml
+
+spring:
+  on-profiles: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/ministeriodb?useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: usuario
+    password: senha
+
+    
 A API utiliza o PostgreSQL como banco de dados padrão. Certifique-se de criar um banco de dados e configurar as informações de conexão no arquivo `application.properties` ou `application.yml` do Spring Boot.
 
 ## Executando a Aplicação
