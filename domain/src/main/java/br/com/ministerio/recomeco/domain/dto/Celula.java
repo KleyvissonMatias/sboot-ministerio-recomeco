@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class Celula implements Serializable {
     private String endereco;
     private String telefoneContato;
     private String outroTelefone;
-    private LocalDate dataInclusao;
-    private LocalDate dataAlteracao;
-    private LocalDate dataExclusao;
+    private LocalDateTime dataInclusao;
+    private LocalDateTime dataAlteracao;
+    private LocalDateTime dataExclusao;
 }

@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class Vida implements Serializable {
     private Integer id;
     private String nomeCompleto;
     private String cpf;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String sexo;
     private String estadoCivil;
     private String telefone;
@@ -39,7 +40,7 @@ public class Vida implements Serializable {
     private LocalDate dataAguias;
     private LocalDate dataLidereUm;
     private LocalDate dataLidereDois;
-    private LocalDate dataInclusao;
-    private LocalDate dataAlteracao;
-    private LocalDate dataExclusao;
+    private LocalDateTime dataInclusao;
+    private LocalDateTime dataAlteracao;
+    private LocalDateTime dataExclusao;
 }
