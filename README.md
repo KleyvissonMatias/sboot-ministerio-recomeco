@@ -6,25 +6,14 @@ A API do Ministério Recomeço é uma aplicação que oferece recursos para gere
 
 Antes de começar, certifique-se de que você tenha instalado o seguinte em seu ambiente de desenvolvimento:
 
-- Java 11 ou superior
-- Maven
-- MySQL
+- Java 11+ ou superior
+- Maven (Versão atual)
+- MySQL (8.0)
 - Git (opcional, se você planeja clonar o repositório)
 
 ## Configuração do Banco de Dados
-
-Configurado no application.yml
-
-spring:
-  on-profiles: local
-  datasource:
-    url: jdbc:mysql://localhost:3306/ministeriodb?useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: usuario
-    password: senha
-
     
-A API utiliza o PostgreSQL como banco de dados padrão. Certifique-se de criar um banco de dados e configurar as informações de conexão no arquivo `application.properties` ou `application.yml` do Spring Boot.
+A API utiliza o MySQL como banco de dados padrão. Certifique-se de criar um banco de dados e configurar as informações de conexão no arquivo `application.properties` ou `application.yml` do Spring Boot.
 
 ## Executando a Aplicação
 
