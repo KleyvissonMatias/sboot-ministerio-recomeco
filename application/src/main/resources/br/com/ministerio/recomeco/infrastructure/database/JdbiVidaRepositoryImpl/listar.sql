@@ -29,4 +29,5 @@ SELECT
     dataInclusao as dataInclusao,
     dataAlteracao as dataAlteracao,
     dataExclusao as dataExclusao
-FROM ministeriodb.vida;
+FROM ministeriodb.vida
+WHERE dataExclusao IS NULL;

@@ -10,4 +10,5 @@ SELECT
     dataInclusao as dataInclusao,
     dataAlteracao as dataAlteracao,
     dataExclusao as dataExclusao
-FROM ministeriodb.celula;
+FROM ministeriodb.celula
+WHERE dataExclusao IS NULL;
