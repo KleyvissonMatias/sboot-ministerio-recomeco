@@ -51,6 +51,11 @@ public interface JdbiVidaRepositoryImpl extends VidaRepository {
     List<Vida> listarPorNome(@Bind("nome") String nome);
 
     @Override
+    @SqlQuery
+    @RegisterBeanMapper(Vida.class)
+    List<Vida> listarPorStatus(@Bind("status") String status);
+
+    @Override
     @SqlUpdate
     @RegisterBeanMapper(Vida.class)
     void atualizarStatusPorCpf(@Bind("cpf") String cpf, @Bind("status") String status);

@@ -9,6 +9,8 @@ public interface VidaRepository extends IRepository<Vida> {
 
     List<Vida> listarPorNome(String nome);
 
+    List<Vida> listarPorStatus(String status);
+
     void atualizarStatusPorCpf(String cpf, String status);
 
     void atualizarStatusPorId(Integer id, String status);

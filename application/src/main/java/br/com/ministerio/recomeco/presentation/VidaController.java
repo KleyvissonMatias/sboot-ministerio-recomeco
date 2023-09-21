@@ -140,6 +140,21 @@ public class VidaController {
         }
     }
 
+    @GetMapping(path = "/listar-por-status")
+    public ResponseEntity<?> listarVidasPorStatus(@RequestParam @Validated String status) {
+        try {
+            List<Vida> vidas = service.listarPorStatus(status);
+            return ResponseEntity.ok(vidas);
+        } catch (MinisterioRecomecoException e) {
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
+        }
+    }
+
     @DeleteMapping(path = {"/{id}"})
     public ResponseEntity<?> deletarVida(@PathVariable("id") @Validated Integer id) {
         try {
