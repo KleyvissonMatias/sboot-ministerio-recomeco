@@ -3,7 +3,6 @@ package br.com.ministerio.recomeco.domain.dto;
 import lombok.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 @Data
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Celula implements Serializable {
-    private BigInteger id;
+    private Integer id;
     private String nomeCelula;
     private String nomeLider;
     private String diaReuniao;

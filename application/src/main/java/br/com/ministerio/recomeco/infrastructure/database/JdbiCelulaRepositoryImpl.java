@@ -25,7 +25,7 @@ public interface JdbiCelulaRepositoryImpl extends CelulaRepository {
     @Override
     @SqlQuery
     @RegisterBeanMapper(Celula.class)
-    List<Celula> listarPorLider(@Bind("nomeLider") String nome);
+    List<Celula> listarPorLider(@Bind("nomeLider") String nomeLider);
 
     @Override
     @SqlQuery
@@ -35,7 +35,7 @@ public interface JdbiCelulaRepositoryImpl extends CelulaRepository {
     @Override
     @SqlQuery
     @RegisterBeanMapper(Celula.class)
-    Celula obterPorId(@Bind("id") BigInteger id);
+    Celula obterPorId(@Bind("id") Integer id);
 
     @Override
     @SqlUpdate
@@ -50,5 +50,5 @@ public interface JdbiCelulaRepositoryImpl extends CelulaRepository {
     @Override
     @SqlUpdate
     @RegisterBeanMapper(Celula.class)
-    void deletar(@Bind("id") BigInteger id);
+    void deletar(@Bind("id") Integer id);
 }

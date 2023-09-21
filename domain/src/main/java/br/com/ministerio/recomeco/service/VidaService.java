@@ -25,13 +25,13 @@ public class VidaService extends Service<Vida> {
             }
             return vidas;
         } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatus(), e.getMensagemErro());
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
     @Override
-    public Vida obterPorId(BigInteger id) {
+    public Vida obterPorId(Integer id) {
         try {
             Vida vida = repository.obterPorId(id);
             if (vida == null) {
@@ -40,7 +40,7 @@ public class VidaService extends Service<Vida> {
             return vida;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
@@ -50,7 +50,7 @@ public class VidaService extends Service<Vida> {
             repository.criar(vida);
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
@@ -63,17 +63,17 @@ public class VidaService extends Service<Vida> {
             }
             return vidaAtualizada;
         } catch (MinisterioRecomecoException e) {
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
     @Override
-    public void deletar(BigInteger id) {
+    public void deletar(Integer id) {
         try {
             repository.deletar(id);
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
@@ -87,7 +87,7 @@ public class VidaService extends Service<Vida> {
             return vidas;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
@@ -100,7 +100,7 @@ public class VidaService extends Service<Vida> {
             return vida;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
@@ -113,7 +113,7 @@ public class VidaService extends Service<Vida> {
             return statusVida;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_NEGOCIO);
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 }

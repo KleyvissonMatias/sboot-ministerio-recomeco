@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -27,11 +26,11 @@ public class VidaController {
             service.inserir(vida);
             return ResponseEntity.ok().build();
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -42,11 +41,11 @@ public class VidaController {
             Vida vidaAtualizada = service.atualizar(vida);
             return ResponseEntity.ok(vidaAtualizada);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -57,26 +56,26 @@ public class VidaController {
             Vida statusVida = service.atualizarStatus(cpf, status);
             return ResponseEntity.ok(statusVida);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @GetMapping(path = "/obter-por-id")
-    public ResponseEntity<?> obterVidaPorId(@RequestParam @Validated BigInteger id) {
+    public ResponseEntity<?> obterVidaPorId(@RequestParam @Validated Integer id) {
         try {
             Vida vida = service.obterPorId(id);
             return ResponseEntity.ok(vida);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -87,11 +86,11 @@ public class VidaController {
             Vida vida = service.obterPorCpf(cpf);
             return ResponseEntity.ok(vida);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -102,11 +101,11 @@ public class VidaController {
             List<Vida> vidas = service.listar();
             return ResponseEntity.ok(vidas);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -117,26 +116,26 @@ public class VidaController {
             List<Vida> vidas = service.listarPorNome(nome);
             return ResponseEntity.ok(vidas);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public ResponseEntity<?> deletarVida(@PathVariable("id") @Validated BigInteger id) {
+    public ResponseEntity<?> deletarVida(@PathVariable("id") @Validated Integer id) {
         try {
             service.deletar(id);
             return ResponseEntity.noContent().build();
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }

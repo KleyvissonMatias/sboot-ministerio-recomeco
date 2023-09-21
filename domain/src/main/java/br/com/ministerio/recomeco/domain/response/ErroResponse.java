@@ -12,11 +12,9 @@ import java.io.Serializable;
 public class ErroResponse implements Serializable {
     private Integer codigo;
     private String retorno;
-    private Object erro;
 
-    public ErroResponse(Integer codigo, String retorno, Object erro) {
+    public ErroResponse(Integer codigo, String retorno) {
         this.codigo = codigo;
         this.retorno = retorno;
-        this.erro = erro;
     }
 }

@@ -8,8 +8,8 @@ import org.springframework.web.client.HttpServerErrorException;
 @Getter
 @Setter
 public class MinisterioRecomecoException extends HttpServerErrorException {
-    private final HttpStatus status;
-    private final String mensagemErro;
+    private HttpStatus status;
+    private String mensagemErro;
     private Object data;
 
     public MinisterioRecomecoException(HttpStatus status, String message) {
