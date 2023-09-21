@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 @Slf4j
-public class CelulaService extends Service<Celula> {
+public class CelulaService implements Service<Celula> {
     @Autowired
     private CelulaRepository repository;
 

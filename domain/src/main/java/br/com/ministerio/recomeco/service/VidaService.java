@@ -12,7 +12,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Slf4j
-public class VidaService extends Service<Vida> {
+public class VidaService implements Service<Vida> {
     @Autowired
     private VidaRepository repository;
 
