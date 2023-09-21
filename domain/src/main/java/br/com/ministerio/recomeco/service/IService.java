@@ -1,9 +1,8 @@
 package br.com.ministerio.recomeco.service;
 
-import java.math.BigInteger;
 import java.util.List;
 
-public interface Service<T> {
+public interface IService<T> {
      List<T> listar();
      List<T> listarPorNome(String nome);
      T obterPorId(Integer id);

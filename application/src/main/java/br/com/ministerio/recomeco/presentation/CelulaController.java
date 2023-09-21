@@ -3,7 +3,7 @@ package br.com.ministerio.recomeco.presentation;
 import br.com.ministerio.recomeco.domain.dto.Celula;
 import br.com.ministerio.recomeco.domain.response.ErroResponse;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
-import br.com.ministerio.recomeco.service.CelulaService;
+import br.com.ministerio.recomeco.service.CelulaIService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class CelulaController {
     @Autowired
-    private CelulaService service;
+    private CelulaIService service;
 
     @PostMapping(path = "/inserir")
     public ResponseEntity<?> inserirCelula(@RequestBody @Validated Celula celula) {

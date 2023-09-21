@@ -1,29 +1,28 @@
 package br.com.ministerio.recomeco.service;
 
 import br.com.ministerio.recomeco.constant.ErroConstants;
-import br.com.ministerio.recomeco.domain.dto.Vida;
+import br.com.ministerio.recomeco.domain.dto.Celula;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
-import br.com.ministerio.recomeco.port.VidaRepository;
+import br.com.ministerio.recomeco.port.CelulaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @Slf4j
-public class VidaService implements Service<Vida> {
+public class CelulaIService implements IService<Celula> {
     @Autowired
-    private VidaRepository repository;
+    private CelulaRepository repository;
 
     @Override
-    public List<Vida> listar() {
+    public List<Celula> listar() {
         try {
-            List<Vida> vidas = repository.listar();
-            if (vidas.isEmpty()) {
+            List<Celula> celulas = repository.listar();
+            if (celulas.isEmpty()) {
                 throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
             }
-            return vidas;
+            return celulas;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatus(), e.getMensagemErro());
             throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
@@ -31,13 +30,13 @@ public class VidaService implements Service<Vida> {
     }
 
     @Override
-    public Vida obterPorId(Integer id) {
+    public Celula obterPorId(Integer id) {
         try {
-            Vida vida = repository.obterPorId(id);
-            if (vida == null) {
+            Celula celula = repository.obterPorId(id);
+            if (celula == null) {
                 throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
             }
-            return vida;
+            return celula;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
@@ -45,9 +44,9 @@ public class VidaService implements Service<Vida> {
     }
 
     @Override
-    public void inserir(Vida vida) {
+    public void inserir(Celula celula) {
         try {
-            repository.criar(vida);
+            repository.criar(celula);
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
@@ -55,15 +54,16 @@ public class VidaService implements Service<Vida> {
     }
 
     @Override
-    public Vida atualizar(Vida vida) {
+    public Celula atualizar(Celula celula) {
         try {
-            repository.atualizar(vida);
-            Vida vidaAtualizada = obterPorId(vida.getId());
-            if (vidaAtualizada == null) {
+            repository.atualizar(celula);
+            Celula celulaAtualizada = obterPorId(celula.getId());
+            if (celulaAtualizada == null) {
                 throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_REGISTRO);
             }
-            return vidaAtualizada;
+            return celulaAtualizada;
         } catch (MinisterioRecomecoException e) {
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
@@ -79,54 +79,26 @@ public class VidaService implements Service<Vida> {
     }
 
     @Override
-    public List<Vida> listarPorNome(String nome) {
+    public List<Celula> listarPorNome(String nome) {
         try {
-            List<Vida> vidas = repository.listarPorNome(nome);
-            if (vidas.isEmpty()) {
+            List<Celula> celulas = repository.listarPorNome(nome);
+            if (celulas.isEmpty()) {
                 throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
             }
-            return vidas;
+            return celulas;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
         }
     }
 
-    public Vida obterPorCpf(String cpf) {
+    public List<Celula> listarPorLider(String lider) {
         try {
-            Vida vida = repository.obterPorCpf(cpf);
-            if (vida == null) {
+            List<Celula> celulas = repository.listarPorLider(lider);
+            if (celulas.isEmpty()) {
                 throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
             }
-            return vida;
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
-        }
-    }
-
-    public Vida atualizarStatusPorCpf(String cpf, String status) {
-        try {
-            repository.atualizarStatusPorCpf(cpf, status);
-            Vida statusVida = obterPorCpf(cpf);
-            if (statusVida == null) {
-                throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_STATUS);
-            }
-            return statusVida;
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
-        }
-    }
-
-    public Vida atualizarStatusPorId(Integer id, String status) {
-        try {
-            repository.atualizarStatusPorId(id, status);
-            Vida statusVida = obterPorId(id);
-            if (statusVida == null) {
-                throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_STATUS);
-            }
-            return statusVida;
+            return celulas;
         } catch (MinisterioRecomecoException e) {
             log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
             throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
