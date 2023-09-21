@@ -6,4 +6,5 @@ public class ErroConstants {
     public static final String ERRO_ATUALIZAR_REGISTRO = "Erro ao atualizar registro(s).";
     public static final String ERRO_ATUALIZAR_STATUS = "Erro ao atualizar Status do(s) registro(s).";
     public static final String ERRO_NEGOCIO = "Erro de negócio.";
+    public static final String CPF_INVALIDO = "CPF Inválido";
 }

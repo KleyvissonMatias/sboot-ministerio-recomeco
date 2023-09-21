@@ -1,19 +1,19 @@
 package br.com.ministerio.recomeco.config;
 
-import br.com.ministerio.recomeco.service.CelulaIService;
-import br.com.ministerio.recomeco.service.VidaIService;
+import br.com.ministerio.recomeco.service.CelulaService;
+import br.com.ministerio.recomeco.service.VidaService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MinisterioRecomecoConfiguration {
     @Bean
-    public VidaIService vidaService() {
-        return new VidaIService();
+    public VidaService vidaService() {
+        return new VidaService();
     }
 
     @Bean
-    public CelulaIService celulaService() {
-        return new CelulaIService();
+    public CelulaService celulaService() {
+        return new CelulaService();
     }
 }

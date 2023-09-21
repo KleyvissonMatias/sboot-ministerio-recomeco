@@ -3,7 +3,7 @@ package br.com.ministerio.recomeco.presentation;
 import br.com.ministerio.recomeco.domain.dto.Vida;
 import br.com.ministerio.recomeco.domain.response.ErroResponse;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
-import br.com.ministerio.recomeco.service.VidaIService;
+import br.com.ministerio.recomeco.service.VidaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class VidaController {
     @Autowired
-    private VidaIService service;
+    private VidaService service;
 
     @PostMapping(path = "/inserir")
     public ResponseEntity<?> inserirVida(@RequestBody @Validated Vida vida) {

@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 @Slf4j
-public class VidaIService implements IService<Vida> {
+public class VidaService implements IService<Vida> {
     @Autowired
     private VidaRepository repository;
 

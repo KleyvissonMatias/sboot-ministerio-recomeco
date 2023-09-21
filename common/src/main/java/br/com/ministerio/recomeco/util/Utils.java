@@ -1,10 +1,15 @@
 package br.com.ministerio.recomeco.util;
 
-import org.apache.logging.log4j.util.Strings;
+import br.com.caelum.stella.validation.CPFValidator;
+import br.com.caelum.stella.validation.InvalidStateException;
 
 public class Utils {
-
-    public static String retornaString() {
-        return Strings.EMPTY;
+    public static boolean cpfIsValido(String cpf) {
+        try {
+            new CPFValidator().assertValid(cpf);
+            return true;
+        } catch (InvalidStateException e) {
+            return false;
+        }
     }
 }
