@@ -10,7 +10,6 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @UseClasspathSqlLocator
@@ -32,9 +31,9 @@ public interface JdbiVidaRepositoryImpl extends VidaRepository {
     void criar(@BindBean Vida vida);
 
     @Override
-    @SqlQuery
+    @SqlUpdate
     @RegisterBeanMapper(Vida.class)
-    Vida atualizar(@BindBean Vida vida);
+    void atualizar(@BindBean Vida vida);
 
     @Override
     @SqlUpdate
@@ -52,7 +51,7 @@ public interface JdbiVidaRepositoryImpl extends VidaRepository {
     List<Vida> listarPorNome(@Bind("nome") String nome);
 
     @Override
-    @SqlQuery
+    @SqlUpdate
     @RegisterBeanMapper(Vida.class)
-    Vida atualizarStatus(@Bind("cpf") String cpf, @Bind("status") String status);
+    void atualizarStatus(@Bind("cpf") String cpf, @Bind("status") String status);
 }

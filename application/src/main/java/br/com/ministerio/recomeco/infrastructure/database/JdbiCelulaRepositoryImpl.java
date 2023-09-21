@@ -43,9 +43,9 @@ public interface JdbiCelulaRepositoryImpl extends CelulaRepository {
     void criar(@BindBean Celula celula);
 
     @Override
-    @SqlQuery
+    @SqlUpdate
     @RegisterBeanMapper(Vida.class)
-    Celula atualizar(@BindBean Celula celula);
+    void atualizar(@BindBean Celula celula);
 
     @Override
     @SqlUpdate

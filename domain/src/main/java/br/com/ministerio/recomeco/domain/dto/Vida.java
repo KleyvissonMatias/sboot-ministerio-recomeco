@@ -25,6 +25,7 @@ public class Vida implements Serializable {
     private String redeSocial;
     private String possuiCelula;
     private String nomeCelula;
+    private String status;
     private String tipoConversao;
     private String campus;
     private String culto;

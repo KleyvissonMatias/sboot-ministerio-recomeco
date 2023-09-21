@@ -57,7 +57,8 @@ public class VidaService extends Service<Vida> {
     @Override
     public Vida atualizar(Vida vida) {
         try {
-            Vida vidaAtualizada = repository.atualizar(vida);
+            repository.atualizar(vida);
+            Vida vidaAtualizada = obterPorId(vida.getId());
             if (vidaAtualizada == null) {
                 throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_REGISTRO);
             }
@@ -106,7 +107,8 @@ public class VidaService extends Service<Vida> {
 
     public Vida atualizarStatus(String cpf, String status) {
         try {
-            Vida statusVida = repository.atualizarStatus(cpf, status);
+            repository.atualizarStatus(cpf, status);
+            Vida statusVida = obterPorCpf(cpf);
             if (statusVida == null) {
                 throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.ERRO_ATUALIZAR_STATUS);
             }

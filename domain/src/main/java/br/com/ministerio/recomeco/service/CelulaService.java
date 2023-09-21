@@ -56,7 +56,8 @@ public class CelulaService extends Service<Celula> {
     @Override
     public Celula atualizar(Celula celula) {
         try {
-            Celula celulaAtualizada = repository.atualizar(celula);
+            repository.atualizar(celula);
+            Celula celulaAtualizada = obterPorId(celula.getId());
             if (celulaAtualizada == null) {
                 throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_REGISTRO);
             }

@@ -7,6 +7,6 @@ public interface IRepository<T> {
     List<T> listar();
     T obterPorId(Integer id);
     void criar(T t);
-    T atualizar(T t);
+    void atualizar(T t);
     void deletar(Integer id);
 }
