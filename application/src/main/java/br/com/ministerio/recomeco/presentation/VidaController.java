@@ -50,10 +50,25 @@ public class VidaController {
         }
     }
 
-    @PutMapping(path = "/atualizar-status")
-    public ResponseEntity<?> atualizarStatusVida(@RequestParam @Validated String cpf, String status) {
+    @PutMapping(path = "/atualizar-status-por-cpf")
+    public ResponseEntity<?> atualizarStatusVidaPorCpf(@RequestParam @Validated String cpf, String status) {
         try {
-            Vida statusVida = service.atualizarStatus(cpf, status);
+            Vida statusVida = service.atualizarStatusPorCpf(cpf, status);
+            return ResponseEntity.ok(statusVida);
+        } catch (MinisterioRecomecoException e) {
+            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
+        }
+    }
+
+    @PutMapping(path = "/atualizar-status-por-id")
+    public ResponseEntity<?> atualizarStatusVidaPorId(@RequestParam @Validated Integer id, String status) {
+        try {
+            Vida statusVida = service.atualizarStatusPorId(id, status);
             return ResponseEntity.ok(statusVida);
         } catch (MinisterioRecomecoException e) {
             ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());

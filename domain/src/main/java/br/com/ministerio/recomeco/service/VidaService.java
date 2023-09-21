@@ -105,12 +105,26 @@ public class VidaService extends Service<Vida> {
         }
     }
 
-    public Vida atualizarStatus(String cpf, String status) {
+    public Vida atualizarStatusPorCpf(String cpf, String status) {
         try {
-            repository.atualizarStatus(cpf, status);
+            repository.atualizarStatusPorCpf(cpf, status);
             Vida statusVida = obterPorCpf(cpf);
             if (statusVida == null) {
-                throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.ERRO_ATUALIZAR_STATUS);
+                throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_STATUS);
+            }
+            return statusVida;
+        } catch (MinisterioRecomecoException e) {
+            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
+        }
+    }
+
+    public Vida atualizarStatusPorId(Integer id, String status) {
+        try {
+            repository.atualizarStatusPorId(id, status);
+            Vida statusVida = obterPorId(id);
+            if (statusVida == null) {
+                throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_STATUS);
             }
             return statusVida;
         } catch (MinisterioRecomecoException e) {
