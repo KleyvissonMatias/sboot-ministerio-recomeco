@@ -50,10 +50,7 @@ public class CelulaService implements IService<Celula> {
     }
 
     public void deletar(Integer id) {
-        Celula celula = obterPorId(id);
-        if (celula == null) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.ERRO_EXCLUIR_REGISTRO));
-        }
+        obterPorId(id);
         repository.deletar(id);
     }
 

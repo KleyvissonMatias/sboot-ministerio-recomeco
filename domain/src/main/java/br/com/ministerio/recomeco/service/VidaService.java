@@ -50,10 +50,7 @@ public class VidaService implements IService<Vida> {
     }
 
     public void deletar(Integer id) {
-        Vida vida = obterPorId(id);
-        if (vida == null) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.ERRO_EXCLUIR_REGISTRO));
-        }
+        obterPorId(id);
         repository.deletar(id);
     }
 
