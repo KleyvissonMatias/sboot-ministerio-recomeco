@@ -17,7 +17,7 @@ public class CelulaService implements IService<Celula> {
     private CelulaRepository repository;
 
     private void handleError(MinisterioRecomecoException e) {
-        log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+        log.error(ErroConstants.ERRO_NEGOCIO, e.getCause());
         throw e;
     }
 

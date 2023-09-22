@@ -17,7 +17,7 @@ public class VidaService implements IService<Vida> {
     private VidaRepository repository;
 
     private void handleError(MinisterioRecomecoException e) {
-        log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+        log.error(ErroConstants.ERRO_NEGOCIO, e.getCause());
         throw e;
     }
 
