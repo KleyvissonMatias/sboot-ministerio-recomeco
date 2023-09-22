@@ -1,6 +1,5 @@
 package br.com.ministerio.recomeco.port;
 
-import java.math.BigInteger;
 import java.util.List;
 
 public interface IRepository<T> {

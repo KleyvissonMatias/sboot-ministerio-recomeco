@@ -12,96 +12,65 @@ import java.util.List;
 
 @Slf4j
 public class CelulaService implements IService<Celula> {
+
     @Autowired
     private CelulaRepository repository;
 
+    private void handleError(MinisterioRecomecoException e) {
+        log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
+        throw e;
+    }
+
     @Override
     public List<Celula> listar() {
-        try {
-            List<Celula> celulas = repository.listar();
-            if (celulas.isEmpty()) {
-                throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
-            }
-            return celulas;
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatus(), e.getMensagemErro());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
+        List<Celula> celulas = repository.listar();
+        if (celulas.isEmpty()) {
+            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
         }
+        return celulas;
     }
 
     @Override
     public Celula obterPorId(Integer id) {
-        try {
-            Celula celula = repository.obterPorId(id);
-            if (celula == null) {
-                throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
-            }
-            return celula;
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
+        Celula celula = repository.obterPorId(id);
+        if (celula == null) {
+            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
         }
+        return celula;
     }
 
     @Override
     public void inserir(Celula celula) {
-        try {
-            repository.criar(celula);
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
-        }
+        repository.criar(celula);
     }
 
-    @Override
     public Celula atualizar(Celula celula) {
-        try {
-            repository.atualizar(celula);
-            Celula celulaAtualizada = obterPorId(celula.getId());
-            if (celulaAtualizada == null) {
-                throw new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, ErroConstants.ERRO_ATUALIZAR_REGISTRO);
-            }
-            return celulaAtualizada;
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
-        }
+        repository.atualizar(celula);
+        return celula;
     }
 
-    @Override
     public void deletar(Integer id) {
-        try {
-            repository.deletar(id);
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
+        Celula celula = obterPorId(id);
+        if (celula == null) {
+            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.ERRO_EXCLUIR_REGISTRO));
         }
+        repository.deletar(id);
     }
 
     @Override
     public List<Celula> listarPorNome(String nome) {
-        try {
-            List<Celula> celulas = repository.listarPorNome(nome);
-            if (celulas.isEmpty()) {
-                throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
-            }
-            return celulas;
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
+        List<Celula> celulas = repository.listarPorNome(nome);
+        if (celulas.isEmpty()) {
+            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
         }
+        return celulas;
     }
 
     public List<Celula> listarPorLider(String lider) {
-        try {
-            List<Celula> celulas = repository.listarPorLider(lider);
-            if (celulas.isEmpty()) {
-                throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
-            }
-            return celulas;
-        } catch (MinisterioRecomecoException e) {
-            log.error(ErroConstants.ERRO_NEGOCIO, e.getStatusCode(), e.getMessage());
-            throw new MinisterioRecomecoException(e.getStatus(), e.getMensagemErro(), e.getData());
+        List<Celula> celulas = repository.listarPorLider(lider);
+        if (celulas.isEmpty()) {
+            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
         }
+        return celulas;
     }
 }

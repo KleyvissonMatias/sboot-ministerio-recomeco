@@ -1,5 +1,6 @@
 package br.com.ministerio.recomeco.presentation;
 
+import br.com.ministerio.recomeco.constant.ErroConstants;
 import br.com.ministerio.recomeco.domain.dto.Vida;
 import br.com.ministerio.recomeco.domain.response.ErroResponse;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
@@ -30,7 +31,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -45,7 +46,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -60,7 +61,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -75,7 +76,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -90,7 +91,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -105,7 +106,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -120,7 +121,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -135,7 +136,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -150,7 +151,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
@@ -165,7 +166,7 @@ public class VidaController {
             return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErroConstants.ERRO_INTERNO);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
     }
