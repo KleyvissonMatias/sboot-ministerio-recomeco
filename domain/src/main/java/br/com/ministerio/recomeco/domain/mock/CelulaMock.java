@@ -27,6 +27,6 @@ public class CelulaMock {
                 .dataInclusao(LocalDateTime.now())
                 .dataAlteracao(LocalDateTime.now())
                 .dataExclusao(null)
-                .build(); // Supondo que não foi excluída
+                .build();
     }
 }
