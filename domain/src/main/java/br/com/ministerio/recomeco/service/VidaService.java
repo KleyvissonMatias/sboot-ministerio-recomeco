@@ -16,16 +16,11 @@ public class VidaService implements IService<Vida> {
     @Autowired
     private VidaRepository repository;
 
-    private void handleError(MinisterioRecomecoException e) {
-        log.error(ErroConstants.ERRO_NEGOCIO, e.getCause());
-        throw e;
-    }
-
     @Override
     public List<Vida> listar() {
         List<Vida> vidas = repository.listar();
         if (vidas.isEmpty()) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return vidas;
     }
@@ -34,7 +29,7 @@ public class VidaService implements IService<Vida> {
     public Vida obterPorId(Integer id) {
         Vida vida = repository.obterPorId(id);
         if (vida == null) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return vida;
     }
@@ -58,7 +53,7 @@ public class VidaService implements IService<Vida> {
     public List<Vida> listarPorNome(String nome) {
         List<Vida> vidas = repository.listarPorNome(nome);
         if (vidas.isEmpty()) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return vidas;
     }
@@ -66,7 +61,7 @@ public class VidaService implements IService<Vida> {
     public List<Vida> listarPorStatus(String status) {
         List<Vida> vidas = repository.listarPorStatus(status);
         if (vidas.isEmpty()) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return vidas;
     }
@@ -74,7 +69,7 @@ public class VidaService implements IService<Vida> {
     public Vida obterPorCpf(String cpf) {
         Vida vida = repository.obterPorCpf(cpf);
         if (vida == null) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return vida;
     }

@@ -26,10 +26,9 @@ public class CelulaController {
             service.inserir(celula);
             return ResponseEntity.ok().build();
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
-            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+            ErroResponse erroResponse = new ErroResponse(e.getStatus().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatus()).body(erroResponse);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
@@ -41,10 +40,9 @@ public class CelulaController {
             Celula celulaAtualizada = service.atualizar(celula);
             return ResponseEntity.ok(celulaAtualizada);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
-            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+            ErroResponse erroResponse = new ErroResponse(e.getStatus().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatus()).body(erroResponse);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
@@ -56,10 +54,9 @@ public class CelulaController {
             Celula celula = service.obterPorId(id);
             return ResponseEntity.ok(celula);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
-            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+            ErroResponse erroResponse = new ErroResponse(e.getStatus().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatus()).body(erroResponse);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
@@ -71,10 +68,9 @@ public class CelulaController {
             List<Celula> celulas = service.listar();
             return ResponseEntity.ok(celulas);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
-            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+            ErroResponse erroResponse = new ErroResponse(e.getStatus().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatus()).body(erroResponse);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
@@ -86,10 +82,9 @@ public class CelulaController {
             List<Celula> celulas = service.listarPorNome(nome);
             return ResponseEntity.ok(celulas);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
-            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+            ErroResponse erroResponse = new ErroResponse(e.getStatus().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatus()).body(erroResponse);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
@@ -101,10 +96,9 @@ public class CelulaController {
             List<Celula> celulas = service.listarPorLider(lider);
             return ResponseEntity.ok(celulas);
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
-            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+            ErroResponse erroResponse = new ErroResponse(e.getStatus().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatus()).body(erroResponse);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }
@@ -116,10 +110,9 @@ public class CelulaController {
             service.deletar(id);
             return ResponseEntity.noContent().build();
         } catch (MinisterioRecomecoException e) {
-            ErroResponse erroResponse = new ErroResponse(e.getStatusCode().value(), e.getMessage());
-            return ResponseEntity.status(e.getStatusCode()).body(erroResponse);
+            ErroResponse erroResponse = new ErroResponse(e.getStatus().value(), e.getMessage());
+            return ResponseEntity.status(e.getStatus()).body(erroResponse);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
             ErroResponse erroResponse = new ErroResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResponse);
         }

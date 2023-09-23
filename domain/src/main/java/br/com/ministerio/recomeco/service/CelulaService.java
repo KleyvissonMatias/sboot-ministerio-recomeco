@@ -16,16 +16,11 @@ public class CelulaService implements IService<Celula> {
     @Autowired
     private CelulaRepository repository;
 
-    private void handleError(MinisterioRecomecoException e) {
-        log.error(ErroConstants.ERRO_NEGOCIO, e.getCause());
-        throw e;
-    }
-
     @Override
     public List<Celula> listar() {
         List<Celula> celulas = repository.listar();
         if (celulas.isEmpty()) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return celulas;
     }
@@ -34,7 +29,7 @@ public class CelulaService implements IService<Celula> {
     public Celula obterPorId(Integer id) {
         Celula celula = repository.obterPorId(id);
         if (celula == null) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return celula;
     }
@@ -58,7 +53,7 @@ public class CelulaService implements IService<Celula> {
     public List<Celula> listarPorNome(String nome) {
         List<Celula> celulas = repository.listarPorNome(nome);
         if (celulas.isEmpty()) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return celulas;
     }
@@ -66,7 +61,7 @@ public class CelulaService implements IService<Celula> {
     public List<Celula> listarPorLider(String lider) {
         List<Celula> celulas = repository.listarPorLider(lider);
         if (celulas.isEmpty()) {
-            handleError(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO));
+            throw new MinisterioRecomecoException(HttpStatus.NOT_FOUND, ErroConstants.SEM_REGISTRO);
         }
         return celulas;
     }
