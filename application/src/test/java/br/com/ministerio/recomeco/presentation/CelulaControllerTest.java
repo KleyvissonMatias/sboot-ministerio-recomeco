@@ -1,5 +1,6 @@
 package br.com.ministerio.recomeco.presentation;
 
+import br.com.ministerio.recomeco.constant.UtilsConstants;
 import br.com.ministerio.recomeco.domain.dto.Celula;
 import br.com.ministerio.recomeco.exception.MinisterioRecomecoException;
 import br.com.ministerio.recomeco.service.CelulaService;
@@ -16,7 +17,6 @@ import java.util.List;
 import static br.com.ministerio.recomeco.domain.mock.CelulaMock.criarCelulaMock;
 import static br.com.ministerio.recomeco.domain.mock.CelulaMock.criarCelulasMock;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class CelulaControllerTest {
@@ -47,7 +47,7 @@ public class CelulaControllerTest {
     public void testInserirCelula_Exception() throws Exception {
         Celula celula = criarCelulaMock();
 
-        doThrow(new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, "Teste")).when(celulaService).inserir(celula);
+        doThrow(new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, UtilsConstants.EXCEPTION)).when(celulaService).inserir(celula);
 
         ResponseEntity<?> response = celulaController.inserirCelula(celula);
 
@@ -73,7 +73,7 @@ public class CelulaControllerTest {
     public void testAtualizarCelula_Exception() throws Exception {
         Celula celula = criarCelulaMock();
 
-        doThrow(new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, "Teste")).when(celulaService).atualizar(celula);
+        doThrow(new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, UtilsConstants.EXCEPTION)).when(celulaService).atualizar(celula);
 
         ResponseEntity<?> response = celulaController.atualizarCelula(celula);
 
@@ -99,20 +99,12 @@ public class CelulaControllerTest {
     public void testObterCelulaPorId_NotFoundException() throws Exception {
         Integer id = 1;
 
-        doThrow(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, "Teste exception")).when(celulaService).obterPorId(id);
+        doThrow(new MinisterioRecomecoException(HttpStatus.NOT_FOUND, UtilsConstants.EXCEPTION)).when(celulaService).obterPorId(id);
 
         ResponseEntity<?> response = celulaController.obterCelulaPorId(id);
 
         verify(celulaService, times(1)).obterPorId(id);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-    }
-
-    //@Test
-    public void testObterCelulaPorId_Exception() throws Exception {
-        Integer id = 1;
-
-        when(celulaService.obterPorId(id)).thenThrow(new Exception());
-        assertThrows(Exception.class, () -> celulaController.obterCelulaPorId(id));
     }
 
     @Test
@@ -130,7 +122,7 @@ public class CelulaControllerTest {
 
     @Test
     public void testListarCelulas_Exception() throws Exception {
-        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, "Teste exception")).when(celulaService).listar();
+        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, UtilsConstants.EXCEPTION)).when(celulaService).listar();
 
         ResponseEntity<?> response = celulaController.listarCelulas();
 
@@ -156,7 +148,7 @@ public class CelulaControllerTest {
     public void testListarCelulasPorNome_Exception() throws Exception {
         String nome = "TestName";
 
-        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, "Teste exception")).when(celulaService).listarPorNome(nome);
+        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, UtilsConstants.EXCEPTION)).when(celulaService).listarPorNome(nome);
 
         ResponseEntity<?> response = celulaController.listarCelulasPorNome(nome);
 
@@ -182,7 +174,7 @@ public class CelulaControllerTest {
     public void testListarCelulasPorLider_Exception() throws Exception {
         String lider = "TestLider";
 
-        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, "Teste exception")).when(celulaService).listarPorLider(lider);
+        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, UtilsConstants.EXCEPTION)).when(celulaService).listarPorLider(lider);
 
         ResponseEntity<?> response = celulaController.listarCelulasPorLider(lider);
 
@@ -206,7 +198,7 @@ public class CelulaControllerTest {
     public void testDeletarCelula_Exception() throws Exception {
         Integer id = 1;
 
-        doThrow(new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, "Teste exception")).when(celulaService).deletar(id);
+        doThrow(new MinisterioRecomecoException(HttpStatus.BAD_REQUEST, UtilsConstants.EXCEPTION)).when(celulaService).deletar(id);
 
         ResponseEntity<?> response = celulaController.deletarCelula(id);
 

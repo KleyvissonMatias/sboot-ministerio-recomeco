@@ -21,4 +21,5 @@ public class UtilsConstants {
     public static final String CULTO_INVALIDO = "AS|#$12";
     public static final String STATUS = "Triagem";
     public static final String STATUS_INVALIDO = "$%#212";
+    public static final String EXCEPTION = "Teste Exception";
 }
