@@ -31,11 +31,11 @@ public class Vida implements Serializable {
     private LocalDate dataNascimento;
 
     @NotNull(message = "O Sexo não pode ser nulo")
-    @Pattern(regexp = "^(Masculino|Feminino)$", message = "Sexo inválido. Use 'Masculino' ou 'Feminino'")
+    @Pattern(regexp = "^(?i)(Masculino|Feminino)$", message = "Sexo inválido. Use 'Masculino' ou 'Feminino'")
     private String sexo;
 
     @NotNull(message = "O Estado Civil não pode ser nulo")
-    @Pattern(regexp = "^(Solteiro|Casado|Divorciado|Viúvo)$", message = "Estado civil inválido")
+    @Pattern(regexp = "^(?i)(Solteiro|Casado|Divorciado|Viúvo)$", message = "Estado civil inválido")
     private String estadoCivil;
 
     @NotNull(message = "O Telefone não pode ser nulo")
@@ -48,8 +48,6 @@ public class Vida implements Serializable {
     @NotBlank(message = "O endereço não pode estar em branco")
     private String endereco;
 
-    @NotNull(message = "O email não pode ser nulo")
-    @NotBlank(message = "O email não pode estar em branco")
     @Email(message = "Endereço de email inválido")
     private String email;
 
@@ -57,17 +55,17 @@ public class Vida implements Serializable {
 
     @NotNull(message = "O campo possui celula não pode ser nulo")
     @NotBlank(message = "O campo possui celula não pode estar em branco")
-    @Pattern(regexp = "^[SN]$", message = "Valor inválido para 'possuiCelula'. Use 'S' Sim ou 'N' Não")
+    @Pattern(regexp = "^(?i)[SN]$", message = "Valor inválido para 'possuiCelula'. Use 'S' Sim ou 'N' Não")
     private String possuiCelula;
 
     private String nomeCelula;
 
-    @Pattern(regexp = "^(Ativo|Inativo|Triagem|Em Célula|Encaminhado)$", message = "Status inválido. Use 'Ativo','Inativo','Triagem','Em Célula', 'Encaminhado'")
+    @Pattern(regexp = "^(?i)(Ativo|Inativo|Triagem|Em Célula|Encaminhado)$", message = "Status inválido. Use 'Ativo','Inativo','Triagem','Em Célula', 'Encaminhado'")
     private String status;
 
     @NotNull(message = "O tipo conversão não pode ser nulo")
     @NotBlank(message = "O tipo conversão celula não pode estar em branco")
-    @Pattern(regexp = "^(Online|Presencial)$", message = "Status inválido. Use 'Online' ou 'Presencial'")
+    @Pattern(regexp = "^(?i)(Online|Presencial)$", message = "Status inválido. Use 'Online' ou 'Presencial'")
     private String tipoConversao;
 
     @NotNull(message = "O campus não pode ser nulo")
@@ -76,7 +74,7 @@ public class Vida implements Serializable {
 
     @NotNull(message = "O culto não pode ser nulo")
     @NotBlank(message = "O campo culto não pode estar em branco")
-    @Pattern(regexp = "^(Domingo|TPU|Connect|Quarta|Start|Connect UP|Decolar|Memorial)$", message = "culto inválido. Use 'Domingo','TPU','Connect','Quarta','Start','Connect UP','Decolar' ou 'Memorial'")
+    @Pattern(regexp = "^(?i)(Domingo|TPU|Connect|Quarta|Start|Connect UP|Decolar|Memorial)$", message = "culto inválido. Use 'Domingo','TPU','Connect','Quarta','Start','Connect UP','Decolar' ou 'Memorial'")
     private String culto;
 
     @NotNull(message = "O horario do culto não pode ser nulo")
@@ -87,10 +85,10 @@ public class Vida implements Serializable {
     @Size(max = 500, message = "A observação deve ter no máximo 500 caracteres")
     private String observacao;
 
-    @Pattern(regexp = "^[SN]$", message = "Valor inválido para 'lider de Celula'. Use 'S' Sim ou 'N' Não")
+    @Pattern(regexp = "^(?i)[SN]$", message = "Valor inválido para 'lider de Celula'. Use 'S' Sim ou 'N' Não")
     private String liderCelula;
 
-    @Pattern(regexp = "^[SN]$", message = "Valor inválido para 'lider em Treinamento'. Use 'S' Sim ou 'N' Não")
+    @Pattern(regexp = "^(?i)[SN]$", message = "Valor inválido para 'lider em Treinamento'. Use 'S' Sim ou 'N' Não")
     private String liderTreinamento;
 
     @Past(message = "A data de batismo deve estar no passado")
@@ -126,7 +124,7 @@ public class Vida implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime dataExclusao;
 
-    public boolean isCpfValido() {
+    private boolean isCpfValido() {
         if (cpf == null || cpf.isEmpty()) {
             return true;
         }

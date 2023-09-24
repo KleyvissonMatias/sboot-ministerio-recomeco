@@ -27,7 +27,7 @@ public class Celula implements Serializable {
     private String nomeLider;
 
     @NotNull(message = "O dia de reunião não pode ser nulo")
-    @Pattern(regexp = "^(Segunda|Terça|Quinta|Sexta|Sábado)$", message = "Dia de reunião inválido.")
+    @Pattern(regexp = "^(?i)(Segunda|Terça|Quinta|Sexta|Sábado)$", message = "Dia de reunião inválido.")
     private String diaReuniao;
 
     @NotNull(message = "O horário da célula não pode ser nulo")
