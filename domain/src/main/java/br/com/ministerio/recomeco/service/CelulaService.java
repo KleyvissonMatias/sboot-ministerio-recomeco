@@ -40,6 +40,7 @@ public class CelulaService implements IService<Celula> {
     }
 
     public Celula atualizar(Celula celula) {
+        obterPorId(celula.getId());
         repository.atualizar(celula);
         return celula;
     }

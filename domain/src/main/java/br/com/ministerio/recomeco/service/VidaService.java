@@ -40,6 +40,7 @@ public class VidaService implements IService<Vida> {
     }
 
     public Vida atualizar(Vida vida) {
+        obterPorId(vida.getId());
         repository.atualizar(vida);
         return vida;
     }

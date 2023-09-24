@@ -49,6 +49,14 @@ public class CelulaServiceTest {
     }
 
     @Test
+    public void atualizarTesteRetornoExceptionNotFound() {
+        assertThrows(MinisterioRecomecoException.class, () -> {
+            Celula celulaMock = criarCelulaMock();
+            this.service.atualizar(celulaMock);
+        });
+    }
+
+    @Test
     public void deletarTesteRetornoComSucesso() {
         Celula celulaMock = criarCelulaMock();
         when(this.repository.obterPorId(criarCelulaMock().getId())).thenReturn(celulaMock);

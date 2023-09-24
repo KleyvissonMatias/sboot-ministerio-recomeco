@@ -45,9 +45,17 @@ public class VidaServiceTest {
     public void atualizarTesteRetornoComSucesso() {
         Vida vidaRetorno = vidaMock();
         when(this.repository.obterPorId(1)).thenReturn(vidaRetorno);
+        when(this.service.obterPorId(1)).thenReturn(vidaRetorno);
         Vida vida = this.service.atualizar(vidaRetorno);
 
         Assertions.assertNotNull(vida);
+    }
+    @Test
+    public void atualizarTesteRetornoExceptionNotFound() {
+        assertThrows(MinisterioRecomecoException.class, () -> {
+            Vida vidaMock = vidaMock();
+            this.service.atualizar(vidaMock);
+        });
     }
 
     @Test
