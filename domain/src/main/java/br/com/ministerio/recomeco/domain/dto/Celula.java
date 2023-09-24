@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
@@ -26,11 +27,11 @@ public class Celula implements Serializable {
     private String nomeLider;
 
     @NotNull(message = "O dia de reunião não pode ser nulo")
-    @Pattern(regexp = "^(Domingo|Segunda|Terça|Quarta|Quinta|Sexta|Sábado)$", message = "Dia de reunião inválido.")
+    @Pattern(regexp = "^(Segunda|Terça|Quinta|Sexta|Sábado)$", message = "Dia de reunião inválido.")
     private String diaReuniao;
 
     @NotNull(message = "O horário da célula não pode ser nulo")
-    @Pattern(regexp = "^\\d{2}:\\d{2}$", message = "Formato de horário inválido Use HH:mm")
+    @Pattern(regexp = "^(?:[01]\\d|2[0-3]):[0-5]\\d$", message = "Formato de horário inválido Use HH:mm")
     private String horario;
 
     @NotNull(message = "O endereço não pode ser nulo")

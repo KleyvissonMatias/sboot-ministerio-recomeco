@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 @Setter
@@ -61,7 +62,7 @@ public class Vida implements Serializable {
 
     private String nomeCelula;
 
-    @Pattern(regexp = "^(Ativo|Inativo|Triagem|Em Célula)$", message = "Status inválido. Use 'Ativo','Inativo','Triagem','Em Célula'")
+    @Pattern(regexp = "^(Ativo|Inativo|Triagem|Em Célula|Encaminhado)$", message = "Status inválido. Use 'Ativo','Inativo','Triagem','Em Célula', 'Encaminhado'")
     private String status;
 
     @NotNull(message = "O tipo conversão não pode ser nulo")
@@ -80,7 +81,7 @@ public class Vida implements Serializable {
 
     @NotNull(message = "O horario do culto não pode ser nulo")
     @NotBlank(message = "O campo horario do culto não pode estar em branco")
-    @Pattern(regexp = "^\\d{2}:\\d{2}$", message = "Formato de horário inválido Use HH:mm")
+    @Pattern(regexp = "^(?:[01]\\d|2[0-3]):[0-5]\\d$", message = "Formato de horário inválido Use HH:mm")
     private String horarioCulto;
 
     @Size(max = 500, message = "A observação deve ter no máximo 500 caracteres")
@@ -104,7 +105,7 @@ public class Vida implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataRenovo;
 
-    @Past(message = "A data das Águias deve estar no passado")
+    @Past(message = "A data das águias deve estar no passado")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataAguias;
 

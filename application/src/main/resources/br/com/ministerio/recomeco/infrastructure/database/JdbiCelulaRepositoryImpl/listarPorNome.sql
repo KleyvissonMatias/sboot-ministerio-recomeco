@@ -11,4 +11,4 @@ SELECT
     dataAlteracao as dataAlteracao,
     dataExclusao as dataExclusao
 FROM ministeriodb.celula
-WHERE nomeLider LIKE :nome;
+WHERE nomeCelula LIKE :nome;
