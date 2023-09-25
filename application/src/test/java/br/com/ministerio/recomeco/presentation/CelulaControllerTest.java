@@ -172,9 +172,9 @@ public class CelulaControllerTest {
 
     @Test
     public void testListarCelulasPorLider_Exception() throws Exception {
-        String lider = "TestLider";
+        String lider = "Teste";
 
-        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, UtilsConstants.EXCEPTION)).when(celulaService).listarPorLider(lider);
+        doThrow(new RuntimeException("Internal Server Error")).when(celulaService).listarPorLider(lider);
 
         ResponseEntity<?> response = celulaController.listarCelulasPorLider(lider);
 
@@ -204,5 +204,17 @@ public class CelulaControllerTest {
 
         verify(celulaService, times(1)).deletar(id);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
+
+    @Test
+    public void testDeletarCeula_Exception() throws Exception {
+        Integer id = 1;
+
+        doThrow(new MinisterioRecomecoException(HttpStatus.INTERNAL_SERVER_ERROR, UtilsConstants.EXCEPTION)).when(celulaService).deletar(id);
+
+        ResponseEntity<?> response = celulaController.deletarCelula(id);
+
+        verify(celulaService, times(1)).deletar(id);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 }
