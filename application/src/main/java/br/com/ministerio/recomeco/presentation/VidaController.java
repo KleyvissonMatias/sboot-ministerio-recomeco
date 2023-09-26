@@ -51,7 +51,7 @@ public class VidaController {
         }
     }
 
-    @PutMapping(path = "/atualizar-status-por-cpf")
+    @PatchMapping(path = "/atualizar-status-por-cpf")
     public ResponseEntity<?> atualizarStatusVidaPorCpf(@RequestParam @Validated String cpf, String status) {
         try {
             Vida statusVida = service.atualizarStatusPorCpf(cpf, status);
@@ -66,7 +66,7 @@ public class VidaController {
         }
     }
 
-    @PutMapping(path = "/atualizar-status-por-id")
+    @PatchMapping(path = "/atualizar-status-por-id")
     public ResponseEntity<?> atualizarStatusVidaPorId(@RequestParam @Validated Integer id, String status) {
         try {
             Vida statusVida = service.atualizarStatusPorId(id, status);

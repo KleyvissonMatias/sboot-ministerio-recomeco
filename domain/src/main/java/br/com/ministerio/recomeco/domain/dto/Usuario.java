@@ -3,7 +3,6 @@ package br.com.ministerio.recomeco.domain.dto;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -13,10 +12,8 @@ import java.time.LocalDateTime;
 @Setter
 public class Usuario implements Serializable {
     private Integer id;
-    private String login;
-    private String senha;
+    private String username;
+    private String password;
+    private String email;
     private String role;
-    private LocalDateTime dataInclusao;
-    private LocalDateTime dataAlteracao;
-    private LocalDateTime dataExclusao;
 }
