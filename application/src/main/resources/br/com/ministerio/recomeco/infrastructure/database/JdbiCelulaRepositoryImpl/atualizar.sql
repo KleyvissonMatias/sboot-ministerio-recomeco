@@ -1,4 +1,4 @@
-UPDATE ministeriodb.celula
+UPDATE ministeriodb.celulas
 SET
     nomeCelula = :nomeCelula,
     nomeLider = :nomeLider,

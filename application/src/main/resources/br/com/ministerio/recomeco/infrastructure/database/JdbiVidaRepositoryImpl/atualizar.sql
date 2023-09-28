@@ -1,4 +1,4 @@
-UPDATE ministeriodb.vida
+UPDATE ministeriodb.vidas
 SET
     nomeCompleto = :nomeCompleto,
     cpf = :cpf,
