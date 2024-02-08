@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ public class CelulaController {
     private CelulaService service;
 
     @PostMapping(path = "/inserir")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> inserirCelula(@RequestBody @Validated Celula celula) {
         try {
             service.inserir(celula);
@@ -36,6 +38,7 @@ public class CelulaController {
     }
 
     @PutMapping(path = "/atualizar")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> atualizarCelula(@RequestBody @Validated Celula celula) {
         try {
             Celula celulaAtualizada = service.atualizar(celula);
@@ -50,6 +53,7 @@ public class CelulaController {
     }
 
     @GetMapping(path = "/obter-por-id")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> obterCelulaPorId(@RequestParam @Validated Integer id) {
         try {
             Celula celula = service.obterPorId(id);
@@ -64,6 +68,7 @@ public class CelulaController {
     }
 
     @GetMapping(path = "/listar")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> listarCelulas() {
         try {
             List<Celula> celulas = service.listar();
@@ -78,6 +83,7 @@ public class CelulaController {
     }
 
     @GetMapping(path = "/listar-por-nome")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> listarCelulasPorNome(@RequestParam @Validated String nome) {
         try {
             List<Celula> celulas = service.listarPorNome(nome);
@@ -92,6 +98,7 @@ public class CelulaController {
     }
 
     @GetMapping(path = "/listar-por-lider")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> listarCelulasPorLider(@RequestParam @Validated String lider) {
         try {
             List<Celula> celulas = service.listarPorLider(lider);
@@ -106,6 +113,7 @@ public class CelulaController {
     }
 
     @DeleteMapping(path = {"/{id}"})
+    @Secured("ROLE_USER")
     public ResponseEntity<?> deletarCelula(@PathVariable("id") Integer id) {
         try {
             service.deletar(id);
