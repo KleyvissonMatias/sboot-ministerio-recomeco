@@ -9,7 +9,7 @@ Antes de começar, certifique-se de que você tenha instalado o seguinte em seu 
 - Java 11+ ou superior
 - Maven (Versão atual)
 - MySQL (8.0)
-- Git (opcional, se você planeja clonar o repositório)
+- Git
 
 ## Configuração do Banco de Dados
     

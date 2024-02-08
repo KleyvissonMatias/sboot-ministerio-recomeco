@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ public class VidaController {
     private VidaService service;
 
     @PostMapping(path = "/inserir")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> inserirVida(@RequestBody @Validated Vida vida) {
         try {
             service.inserir(vida);
@@ -37,6 +39,7 @@ public class VidaController {
     }
 
     @PutMapping(path = "/atualizar")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> atualizarVida(@RequestBody @Validated Vida vida) {
         try {
             Vida vidaAtualizada = service.atualizar(vida);
@@ -52,6 +55,7 @@ public class VidaController {
     }
 
     @PatchMapping(path = "/atualizar-status-por-cpf")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> atualizarStatusVidaPorCpf(@RequestParam @Validated String cpf, String status) {
         try {
             Vida statusVida = service.atualizarStatusPorCpf(cpf, status);
@@ -67,6 +71,7 @@ public class VidaController {
     }
 
     @PatchMapping(path = "/atualizar-status-por-id")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> atualizarStatusVidaPorId(@RequestParam @Validated Integer id, String status) {
         try {
             Vida statusVida = service.atualizarStatusPorId(id, status);
@@ -82,6 +87,7 @@ public class VidaController {
     }
 
     @GetMapping(path = "/obter-por-id")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> obterVidaPorId(@RequestParam @Validated Integer id) {
         try {
             Vida vida = service.obterPorId(id);
@@ -97,6 +103,7 @@ public class VidaController {
     }
 
     @GetMapping(path = "/obter-por-cpf")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> obterVidaPorCpf(@RequestParam @Validated String cpf) {
         try {
             Vida vida = service.obterPorCpf(cpf);
@@ -112,6 +119,7 @@ public class VidaController {
     }
 
     @GetMapping(path = "/listar")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> listarVidas() {
         try {
             List<Vida> vidas = service.listar();
@@ -127,6 +135,7 @@ public class VidaController {
     }
 
     @GetMapping(path = "/listar-por-nome")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> listarVidasPorNome(@RequestParam @Validated String nome) {
         try {
             List<Vida> vidas = service.listarPorNome(nome);
@@ -142,6 +151,7 @@ public class VidaController {
     }
 
     @GetMapping(path = "/listar-por-status")
+    @Secured("ROLE_USER")
     public ResponseEntity<?> listarVidasPorStatus(@RequestParam @Validated String status) {
         try {
             List<Vida> vidas = service.listarPorStatus(status);
@@ -157,6 +167,7 @@ public class VidaController {
     }
 
     @DeleteMapping(path = {"/{id}"})
+    @Secured("ROLE_USER")
     public ResponseEntity<?> deletarVida(@PathVariable("id") @Validated Integer id) {
         try {
             service.deletar(id);

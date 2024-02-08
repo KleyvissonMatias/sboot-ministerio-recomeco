@@ -13,6 +13,13 @@ springdoc:
     path: /swagger-ui-custom.html
     operationsSorter: method
 
+security:
+  oauth2:
+    resourceserver:
+      jwt:
+        jwk-set-uri: http://localhost:8081/v1/api/ministerio-recomeco/token/login
+
+
 # Configurações do Spring Security (se aplicável)
 # security:
 #   basic:
