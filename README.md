@@ -1,4 +1,4 @@
-# API do Ministério Recomeço
+# API do Ministério Recomeço V2
 
 A API do Ministério Recomeço é uma aplicação que oferece recursos para gerenciar informações relacionadas ao Ministério, seguindo uma arquitetura hexagonal e utilizando as tecnologias mais recentes do ecossistema Spring Boot.
 
